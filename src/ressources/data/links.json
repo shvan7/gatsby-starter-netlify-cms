@@ -1,0 +1,10 @@
+{
+  "navbar": {
+    "links": [
+      { "label": "ACCUEIL", "link": "#tta" },
+      { "label": "À PROPOS", "link": "#ttb" },
+      { "label": "RÉALISATIONS", "link": "#ttc" },
+      { "label": "CONTACT", "link": "#ttd" }
+    ]
+  }
+}

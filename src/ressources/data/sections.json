@@ -1,0 +1,175 @@
+[
+  {
+    "title": "Bienvenue sur mon portfolio !",
+    "subTitle": "Je suis <color>Webdesigner<color>",
+    "counter": false,
+    "type": "sectionTitle",
+    "style": {
+      "bgColor": "#F7F7F7",
+      "textColor1": "#121212",
+      "textColor2": "#DECCCC"
+    }
+  },
+  {
+    "counter": true,
+    "multi": [
+      {
+        "title": "Qui suis-je !",
+        "type": "sectionTitle",
+        "style": {
+          "bgColor": "#DECCCC",
+          "bgTitle": "#fff",
+          "textColor1": "#121212",
+          "textColor2": "#F7F7F7"
+        }
+      },
+      {
+        "title": "<ico>/images/Image5.png<ico>",
+        "text": [
+          "Étudiante en <color>Master 1 Création Digitale à l'ESD<color>. Je suis en alternance en tant que <color>chargée de communication 360<color> au cabinet d'avocat August Debouzy.",
+          " Je suis Webdesigner",
+          "Je suis passionnée par la communication visuelle et digitale, et plus particulièrement par le <color>webdesign et le graphisme<color>."
+        ],
+        "type": "sectionText",
+        "style": { "bgColor": "#fff", "textColor1": "#121212", "textColor2": "#DECCCC" }
+      }
+    ]
+  },
+  {
+    "counter": true,
+    "text": [
+      "« Grâce à l'art, au lieu de voir un seul monde, le nôtre, nous le voyons se multiplier, et autant qu'il y a d'artistes originaux, autant nous avons de mondes à notre disposition. »"
+    ],
+    "type": "sectionText",
+    "style": {
+      "bgColor": "#F7F7F7",
+      "textColor1": "#121212",
+      "textColor2": "#DECCCC",
+      "bgText": "#DECCCC"
+    },
+    "signature": "Marcel Proust"
+  },
+  {
+    "title": "Mes compétences",
+    "type": "sectionIcon",
+    "counter": true,
+    "style": {
+      "bgColor": "#fff",
+      "textColor1": "#121212",
+      "textColor2": "#DECCCC"
+    },
+    "subContent": [
+      {
+        "titles": ["WEBDESIGN/UX", "GRAPHISME", "MONTAGE VIDÉO", "BRANDING"],
+        "icon": ["/xxx"]
+      },
+      {
+        "titles": [
+          "INTEGRATION CONTENU",
+          "STRATÉGIE DE COMMUNICATION",
+          "BRAND CONTENT",
+          "ÉVENEMENTIEL"
+        ],
+        "icon": ["/xxx"]
+      },
+      {
+        "titles": ["PASSIONNÉE", "AUTONOMIE", "ORGANISATION", "DYNAMIQUE"],
+        "icon": ["/xxx"]
+      }
+    ]
+  },
+  {
+    "title": "Les logiciels que je maitrise",
+    "type": "sectionIcon",
+    "counter": true,
+    "style": {
+      "bgColor": "#F7F7F7",
+      "textColor1": "#121212",
+      "textColor2": "#DECCCC"
+    },
+    "subContent": [
+      {
+        "titles": ["PAO"],
+        "icon": ["/xxx"]
+      },
+      {
+        "titles": ["Vidéo"],
+        "icon": ["/xxx"]
+      },
+      {
+        "titles": ["UI/UX"],
+        "icon": ["/xxx"]
+      },
+      {
+        "titles": ["CMS"],
+        "icon": ["/xxx"]
+      }
+    ]
+  },
+  {
+    "title": "Mes réalisations",
+    "type": "sectionCarousel",
+    "style": {
+      "bgColor": "#DECCCC",
+      "bgTitle": "#fff",
+      "textColor1": "#121212",
+      "textColor2": "#DECCCC"
+    },
+    "subContent": {
+      "carousel": {
+        "link": [],
+        "url": []
+      }
+    }
+  },
+  {
+    "title": "Me contacter",
+    "type": "sectionContact",
+    "style": {
+      "bgColor": "#fff",
+      "bgTitle": "#DECCCC",
+      "textColor1": "#121212",
+      "textColor2": "#DECCCC",
+      "btnColor": "#fff"
+    },
+    "form": {
+      "action": "",
+      "submitText": "ENVOYER",
+      "fields": [
+        { "label": "NOM", "type": "alpha", "name": "nom", "value": "" },
+        { "label": "MAIL", "type": "mail", "name": "mail", "value": "" },
+        { "label": "MESSAGE", "type": "text" }
+      ]
+    }
+  },
+  {
+    "counter": true,
+    "multi": [
+      {
+        "title": "<svg> <svg>",
+        "type": "sectionTitle",
+        "style": {
+          "bgColor": "#DECCCC",
+          "textColor1": "#fff",
+          "textColor2": "#F7F7F7"
+        }
+      },
+      {
+        "mail": "sokaina.mez@icloud.com",
+        "number": "(+33) 6 52 63 56 28",
+        "other": "(sms/appel/whatsapp)",
+        "type": "sectionMe",
+        "style": { "bgColor": "#F7F7F7", "textColor1": "#121212", "textColor2": "#DECCCC" }
+      }
+    ]
+  },
+  {
+    "title": "Merci",
+    "type": "sectionTitle",
+    "style": {
+      "bgColor": "#fff",
+      "textColor1": "#121212",
+      "fontSize": "10vw"
+    }
+  }
+]
