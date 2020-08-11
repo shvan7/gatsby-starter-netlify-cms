@@ -2,20 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 // import PropTypes from 'prop-types'
 
-import { formateText } from '../../utils/lib'
+import { formateText, convertMarkdownToHtml } from '../../utils/lib'
 
 const Block = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
+  min-height: 100vh;
   flex: 1;
   width: 100%;
   background-color: ${props => props.style.bgColor};
-  color: ${props => props.style.textColor1};
+  color: ${props => props.style.colorText1};
 
   & p {
-    display: inline;
     line-height: 1.5em;
     background-color: ${props => props.style.bgText};
   }
@@ -37,7 +36,7 @@ const Block = styled.div`
   }
 
   & span {
-    color: ${props => props.style.textColor2};
+    color: ${props => props.style.colorText2};
   }
 
   & .signature-div {
@@ -48,20 +47,32 @@ const Block = styled.div`
         float: right;
         font-size: 20px;
         font-family: Lato Light;
-        color: ${props => props.style.textColor1};
+        color: ${props => props.style.colorText1};
       }
     }
   }
 `
 
-const renderText = arrayText => arrayText.map(text => <p>{formateText(text)}</p>)
+const defaultStyle = {
+  bgColor: '#F7F7F7',
+  bgText: 'black',
+  bgTitle: 'red',
+  colorText1: '#121212',
+  colorText2: '#DECCCC',
+}
 
 const SectionText = ({ content }) => {
+  const fromatedHtml = convertMarkdownToHtml(content.htmlMarkdown)
+  const html = fromatedHtml.props.children
+  console.log(content.image)
+
   return (
-    <Block style={content.style}>
+    <Block style={content.style ? content.style : defaultStyle}>
       <div>
-        <h1>{content.title && formateText(content.title)}</h1>
-        {content.text && renderText(content.text)}
+        {content.title && <h1>{formateText(content.title)}</h1>}
+        {content.image && <img alt="title-section-text" src={content.image} />}
+
+        <div dangerouslySetInnerHTML={{ __html: html }} />
         <div className="signature-div">{content.signature && <span>{content.signature}</span>}</div>
       </div>
     </Block>

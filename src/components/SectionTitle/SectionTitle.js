@@ -11,8 +11,9 @@ const Block = styled.div`
   justify-content: space-evenly;
   flex: 1;
   width: 100%;
+  min-height: 100vh;
   background-color: ${props => props.style.bgColor};
-  color: ${props => props.style.textColor1};
+  color: ${props => props.style.colorText1};
 
   & div {
     text-align: center;
@@ -37,7 +38,7 @@ const Block = styled.div`
   }
 
   & span {
-    color: ${props => props.style.textColor2};
+    color: ${props => props.style.colorText2};
   }
 
   & img {
@@ -47,19 +48,23 @@ const Block = styled.div`
   & svg {
     padding: 0 0.2em;
     & path:first-child {
-      /* fill: ${props => props.style.textColor1}; */
-      fill: blue;
+      fill: ${props => props.style.colorText1};
     }
     & path:last-child {
-      /* fill: ${props => props.style.textColor1}; */
-      fill: red;
+      fill: ${props => props.style.colorText1};
     }
   }
 `
 
+const defaultStyle = {
+  bgColor: '#F7F7F7',
+  colorText1: '#121212',
+  colorText2: '#DECCCC',
+}
+
 const SectionTitle = ({ content }) => {
   return (
-    <Block style={content.style}>
+    <Block style={content.style ? content.style : defaultStyle}>
       <div>
         <h1>{content.title && formateText(content.title)}</h1>
         <h3>{content.subTitle && formateText(content.subTitle)}</h3>

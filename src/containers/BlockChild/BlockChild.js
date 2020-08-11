@@ -16,46 +16,51 @@ const Block = styled.div`
 
   & > div {
     flex: 1;
-    height: 100vh;
     flex-flow: column;
     background-color: silver;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (min-width: 1024px) {
+      flex-direction: row;
+    }
+    @media (max-width: 1024px) {
+      flex-direction: column;
+    }
   }
 `
 const selectSection = content => {
-  switch (content.type) {
-    case 'sectionTitle':
-      return <SectionTitle content={content} />
-    case 'sectionText':
-      return <SectionText content={content} />
-    case 'sectionIcon':
-      return <SectionIcon content={content} />
-    case 'sectionCarousel':
-      return <SectionCarousel content={content} />
-    case 'sectionContact':
-      return <SectionContact content={content} />
-    case 'sectionMe':
-      return <SectionMe content={content} />
-    default:
-      return <p>None</p>
-  }
+  return content.map((element, i) => {
+    switch (element.type) {
+      case 'sectionTitle':
+        return <SectionTitle key={i + element.type} content={element} />
+      case 'sectionText':
+        return <SectionText key={i + element.type} content={element} />
+      case 'sectionIcon':
+        return <SectionIcon key={i + element.type} content={element} />
+      case 'sectionCarousel':
+        return <SectionCarousel key={i + element.type} content={element} />
+      case 'sectionContact':
+        return <SectionContact key={i + element.type} content={element} />
+      case 'sectionMe':
+        return <SectionMe key={i + element.type} content={element} />
+      default:
+        return <p>None</p>
+    }
+  })
 }
 
-const renderContent = content =>
-  content.multi ? (
-    content.multi.map((e, i) => <div key={i + 'part-section'}>{selectSection(e)}</div>)
-  ) : (
+const BlockChild = ({ content }) => (
+  <Block>
     <div>{selectSection(content)}</div>
-  )
-
-const BlockChild = ({ content }) => <Block>{renderContent(content)}</Block>
+  </Block>
+)
 
 export default BlockChild
 
 BlockChild.defaultProps = {}
 
 BlockChild.propTypes = {
-  content: PropTypes.shape({}),
+  content: PropTypes.array,
 }

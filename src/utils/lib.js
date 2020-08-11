@@ -1,32 +1,33 @@
 import React from 'react'
+import remark from 'remark'
+import remarkHTML from 'remark-html'
 
-import SvgAdobe from '../ressources/reactSvg/Adobe'
-
-const svgProps = {
-  xmlns: 'http://www.w3.org/2000/svg',
-  width: '90',
-  height: '90',
-}
-
-const renderFormated = result => {
+const renderFormated = (result, type) => {
   const newArray = []
+  let str = ''
 
-  for (let i = 0; i < result.length; i++) {
-    if (result[i] === 'color') newArray.push(<span key={i + result.length}>{result[++i]}</span>)
-    else if (result[i] === 'ico')
-      newArray.push(<img alt="img" key={i + result.length} src={result[++i]} />)
-    else if (result[i] === 'svg') newArray.push(<SvgAdobe {...svgProps} />)
-    else newArray.push(result[i])
-  }
+  for (let i = 0; i < result.length; i++)
+    if (result[i] === '<color>') {
+      type === 'html'
+        ? (str += `<span key=${i + result.length}>${result[++i]}</span>`)
+        : newArray.push(<span key={i + result.length}>{result[++i]}</span>)
+      i++
+    } else type === 'html' ? (str += result[i]) : newArray.push(result[i])
 
-  return newArray
+  return type === 'html' ? str : newArray
 }
 
-export const formateText = str => {
+export const formateText = (str, type) => {
+  if (!str) return <></>
   // regex
-  const regex = /(<.+?>)(.+?)(<.+?>)/g
-  const regex2 = /<(.+?)>/g
+  const regex = /(<color>)(.+?)(<color>)/g
   // array result
-  const result = str.split(regex).map(e => e.replace(regex2, '$1'))
-  return <>{renderFormated(result)}</>
+  const result = str.split(regex)
+  const resultFiltered = result.filter(e => e !== '')
+  return <>{renderFormated(resultFiltered, type)}</>
+}
+
+export const convertMarkdownToHtml = markdown => {
+  const html = remark().use(remarkHTML).processSync(markdown).toString()
+  return formateText(html, 'html')
 }

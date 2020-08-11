@@ -4,84 +4,103 @@ backend:
   name: git-gateway
   branch: master
   commit_messages:
-    create: "Create {{collection}} “{{slug}}”"
-    update: "Update {{collection}} “{{slug}}”"
-    delete: "Delete {{collection}} “{{slug}}”"
-    uploadMedia: "[skip ci] Upload “{{path}}”"
-    deleteMedia: "[skip ci] Delete “{{path}}”"
+    create: 'Create {{collection}} “{{slug}}”'
+    update: 'Update {{collection}} “{{slug}}”'
+    delete: 'Delete {{collection}} “{{slug}}”'
+    uploadMedia: '[skip ci] Upload “{{path}}”'
+    deleteMedia: '[skip ci] Delete “{{path}}”'
 
 media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: "navbar"
-    label: "Navbar"
+  - name: 'navbar'
+    label: 'Navbar'
     files:
-      - file: "src/data/navbar.md"
+      - file: 'src/data/navbar.md'
         label: Links
         name: links
         fields:
+          - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'index-page' }
+          - { label: 'Type', name: 'type', widget: 'hidden', default: 'nav-link' }
           - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "index-page",
-            }
-          - {
-              label: "Type",
-              name: "type",
-              widget: "hidden",
-              default: "nav-link",
-            }
-          - {
-              label: "Link",
-              name: "link",
+              label: 'Link',
+              name: 'link',
               collapsed: false,
-              widget: "list",
+              widget: 'list',
               fields:
                 [
-                  { label: "Label", name: "label", widget: "string" },
+                  { label: 'Label', name: 'label', widget: 'string' },
                   {
-                    label: "Target",
-                    name: "target",
-                    widget: "select",
-                    options: ["id1", "id2", "id3"],
+                    label: 'Target',
+                    name: 'target',
+                    widget: 'select',
+                    options: ['id1', 'id2', 'id3'],
                   },
                 ],
             }
 
-  - name: "pages"
-    label: "Pages"
-    files:
-      - file: "src/pages/index.md"
-        label: "first Page"
-        name: "index"
-        fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "index-page",
-            }
-          - {
-              label: "sectionTitle",
-              name: "sections",
-              collapsed: false,
-              widget: "list",
-              fields:
-                [
-                  { label: Title, name: title, widget: string },
-                  {
-                    label: Type,
-                    name: type,
-                    widget: "select",
-                    options:
-                      [
-                        "sectionTitle",
-                        "sectionText",
-                        "sectionIcon",
-                        "sectionCarousel",
-                      ],
-                  },
-                ],
-            }
+  - name: 'section-index-page'
+    label: 'Section Index Page'
+    folder: 'src/pages/index-page'
+    create: true
+    fields:
+      - { label: 'Name', name: 'name', widget: 'string' }
+      - {
+          label: Section Title,
+          name: sectionTitle,
+          collapsed: true,
+          widget: 'list',
+          default: null,
+          fields:
+            [
+              { label: Title, name: title, widget: string, required: false },
+              { label: Index, name: index, widget: number },
+              { label: Sub Title, name: subTitle, widget: string, required: false },
+              {
+                label: 'Style',
+                name: 'style',
+                widget: 'object',
+                fields:
+                  [
+                    { label: 'Background color', name: 'bgColor', widget: 'color', required: false },
+                    { label: 'Background color title', name: 'bgTitle', widget: 'color', required: false },
+                    { label: 'Color title', name: 'colorText1', widget: 'color', required: false },
+                    { label: 'Color sub title', name: 'colorText2', widget: 'color', required: false },
+                  ],
+              },
+            ],
+        }
+      - {
+          label: Section Text,
+          name: sectionText,
+          collapsed: true,
+          widget: 'list',
+          default: null,
+          fields:
+            [
+              { label: Title, name: title, widget: string, required: false },
+              { 
+                label: Image,
+                name: image,
+                widget: image,
+                required: false,
+                allow_multiple: false,
+              },
+              { label: Index, name: index, widget: number },
+              { label: Text, name: htmlMarkdown, widget: markdown, required: false },
+              {
+                label: 'Style',
+                name: 'style',
+                widget: 'object',
+                fields:
+                  [
+                    { label: 'Background color', name: 'bgColor', widget: 'color', required: false },
+                    { label: 'Background color title', name: 'bgTitle', widget: 'color', required: false },
+                    { label: 'Background color text', name: 'bgText', widget: 'color', required: false },
+                    { label: 'Color 1', name: 'colorText1', widget: 'color', required: false },
+                    { label: 'Color 2', name: 'colorText2', widget: 'color', required: false },
+                  ],
+              },
+            ],
+        }

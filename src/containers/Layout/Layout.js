@@ -8,6 +8,7 @@ import Navbar from '../../components/Navbar/Navbar'
 const Layout = ({ data, children }) => {
   return (
     <>
+      <Fonts />
       <Navbar links={data} />
       <div>{children}</div>
     </>
@@ -21,35 +22,27 @@ Layout.propTypes = {
 export default ({ data, children }) => {
   if (!data)
     return (
-      <>
-        <Fonts />
-        <StaticQuery
-          query={graphql`
-            query LayoutQuery {
-              markdownRemark(frontmatter: { type: { eq: "nav-link" } }) {
-                id
-                frontmatter {
-                  link {
-                    label
-                    target
-                  }
+      <StaticQuery
+        query={graphql`
+          query LayoutQuery {
+            markdownRemark(frontmatter: { type: { eq: "nav-link" } }) {
+              id
+              frontmatter {
+                link {
+                  label
+                  target
                 }
               }
             }
-          `}
-          render={data => {
-            const { markdownRemark: post } = data
-            const { frontmatter: array } = post
-            return <Layout data={array.link} children={children} />
-          }}
-        />
-      </>
+          }
+        `}
+        render={data => {
+          const { markdownRemark: post } = data
+          const { frontmatter: array } = post
+
+          return <Layout data={array.link} children={children} />
+        }}
+      />
     )
-  else
-    return (
-      <>
-        <Fonts />
-        <Layout data={data} children={children} />
-      </>
-    )
+  else return <Layout data={data} children={children} />
 }

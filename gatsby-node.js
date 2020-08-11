@@ -1,14 +1,30 @@
 const _ = require('lodash')
 const path = require('path')
+const remark = require('remark')
+const remarkHTML = require('remark-html')
 const { createFilePath } = require('gatsby-source-filesystem')
 const { fmImagesToRelative } = require('gatsby-remark-relative-images')
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type MarkdownRemark implements Node {
+      frontmatter: Frontmatter
+    }
+    type Frontmatter {
+      sectionTitle : JSON
+      sectionText : JSON
+    }
+  `
+  createTypes(typeDefs)
+}
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
   return graphql(`
     {
-      allMarkdownRemark(limit: 1000) {
+      allMarkdownRemark(limit: 1000, filter: { frontmatter: { templateKey: { ne: null } } }) {
         edges {
           node {
             id

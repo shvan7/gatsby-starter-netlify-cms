@@ -5,25 +5,38 @@ import { graphql } from 'gatsby'
 import Layout from '../containers/Layout'
 import BlockChild from '../containers/BlockChild'
 
-const renderBlockChild = sections => {
-  sections.map((e, i) => <BlockChild key={e.type + i} content={e} />)
+const formatData = data => {
+  return data.map(section => {
+    const arrayOfTemplateName = Object.keys(section)
+    let result = []
+
+    for (const key of arrayOfTemplateName)
+      if (typeof section[key] === 'object') {
+        const res = section[key] ? section[key].flatMap(e => ({ ...e, type: key })) : []
+        result = [...result, ...res]
+      }
+
+    return result
+  })
 }
 
-export const IndexPageTemplate = ({ content }) => {
-  return content ? renderBlockChild(content) : <div></div>
-}
+export const IndexPageTemplate = ({ data }) => {
+  if (!data) return <></>
 
-IndexPageTemplate.propTypes = {
-  style: PropTypes.object,
-  sections: PropTypes.array,
+  const sections = formatData(data)
+  const sectionsSorted = sections.map(section => section.sort((a, b) => a.index - b.index))
+
+  return sectionsSorted.map((e, i) => <BlockChild key={'sections' + i} content={e} />)
 }
 
 const IndexPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
+  const { edges } = data.allMarkdownRemark
+  const arrayContent = edges.map(e => e.node.frontmatter)
+  const flatArray = arrayContent.flat()
 
   return (
     <Layout>
-      <IndexPageTemplate content={frontmatter.content} />
+      <IndexPageTemplate data={flatArray} />
     </Layout>
   )
 }
@@ -40,9 +53,19 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query IndexPageTemplate {
-    markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
-      frontmatter {
-        title
+    allMarkdownRemark(
+      filter: { frontmatter: { templateKey: { eq: null } } }
+      sort: { fields: frontmatter___name }
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            name
+            sectionTitle
+            sectionText
+          }
+        }
       }
     }
   }
