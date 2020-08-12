@@ -28,16 +28,9 @@ export const Fonts = createGlobalStyle`
   }
   body {
     font-family: Lato Regular;
-    font-size: 25px;
-  }
-  h1 {
-    font-size: 50px;
   }
   h2 {
     font-size: 40px;
-  }
-  h3 {
-    font-size: 30px;
   }
   h4 {
     font-size: 20px;
@@ -52,5 +45,29 @@ export const Fonts = createGlobalStyle`
 
   button:hover {
     opacity: 0.8;
+  }
+
+  @media (min-width: 1024px) {
+    body {
+      font-size: 25px;
+    }
+    h1 {
+     font-size: 50px;
+    }
+    h3 {
+    font-size: 20px;
+  }
+  }
+  
+  @media (max-width: 1024px) {
+    body {
+      font-size: 16px;
+    }
+    h1 {
+     font-size: 40px;
+    }
+    h3 {
+    font-size: 20px;
+    }
   }
 `

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
@@ -38,10 +38,19 @@ const renderLinks = links =>
   ))
 
 const Navbar = ({ links }) => {
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
+
+  const updateWidth = () => setInnerWidth(window.innerWidth)
+
+  useEffect(() => {
+    window.addEventListener('resize', updateWidth, true)
+    return () => window.removeEventListener('resize', updateWidth, true)
+  }, [])
+
   return (
     <Block>
       <div>LOGO</div>
-      <div>{renderLinks(links)}</div>
+      <div>{innerWidth > 800 && renderLinks(links)}</div>
     </Block>
   )
 }

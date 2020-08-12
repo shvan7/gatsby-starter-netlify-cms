@@ -1,5 +1,5 @@
 ---
-templateKey: index-page
+templateKey: components
 type: nav-link
 link:
   - label: CONTACT
