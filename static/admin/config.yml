@@ -47,6 +47,13 @@ collections:
     fields:
       - { label: 'Name', name: 'name', widget: 'string' }
       - {
+          label: 'Position',
+          name: 'position',
+          widget: 'select',
+          options: ["row", "column"],
+          default: "row",
+        }
+      - {
           label: Section Title,
           name: sectionTitle,
           collapsed: true,
@@ -142,4 +149,20 @@ collections:
                 ],
             },
           ],
+        }
+      - {
+        label: Section List,
+        name: sectionList,
+        collapsed: true,
+        widget: 'list',
+        fields:
+          [
+            { label: Title, name: title, widget: string, required: false },
+            { 
+              label: Column Text,
+              name: columnText,
+              widget: list,
+              field: { label: List, name: list, widget: string },
+            }
+          ]
         }

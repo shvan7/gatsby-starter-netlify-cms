@@ -16,7 +16,7 @@ const formatData = data => {
         result = [...result, ...res]
       }
 
-    return result
+    return { result, position: section.position }
   })
 }
 
@@ -24,9 +24,11 @@ export const IndexPageTemplate = ({ data }) => {
   if (!data) return <></>
 
   const sections = formatData(data)
-  const sectionsSorted = sections.map(section => section.sort((a, b) => a.index - b.index))
+  const sectionsSorted = sections.map(section => section.result.sort((a, b) => a.index - b.index))
 
-  return sectionsSorted.map((e, i) => <BlockChild key={'sections' + i} content={e} />)
+  return sectionsSorted.map((e, i) => (
+    <BlockChild key={'sections' + i} content={e} position={sections[i].position} />
+  ))
 }
 
 const IndexPage = ({ data }) => {
@@ -62,9 +64,11 @@ export const pageQuery = graphql`
           id
           frontmatter {
             name
+            position
             sectionTitle
             sectionText
             sectionIcon
+            sectionList
           }
         }
       }

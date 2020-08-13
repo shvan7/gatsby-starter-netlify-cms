@@ -1,5 +1,6 @@
 ---
 name: 4-Skill
+position: column
 sectionIcon:
   - title: Les logiciels que je maitrise
     content:
@@ -15,4 +16,10 @@ sectionIcon:
     style:
       bgColor: "#ffffff"
       colorText2: "#decccc"
+sectionList:
+  - title: Mes compétences
+    columnText:
+      - WEBDESIGN/UX, GRAPHISME
+      - INTEGRATION DE CONTENU, STRATÉGIE DE COMMUNICATION
+      - PASSIONNÉE, COCO
 ---

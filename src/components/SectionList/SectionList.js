@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 // import PropTypes from 'prop-types'
 
-import { formateText } from '../../utils/lib'
-
 const Block = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,45 +14,37 @@ const Block = styled.div`
   background-color: ${props => props.style.bgColor};
   color: ${props => props.style.colorText1};
 
-  & img {
-    max-height: 60px;
-    margin: 0 0.5em;
-  }
-
   & div {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  & .content-icon {
+  & .content-column {
     flex-direction: column;
+    margin: 1em;
   }
 
-  & .content-icon-image {
-    display: inline-flex;
-    width: 250px;
+  @media (min-width: 900px) {
+    & .content {
+      flex-direction: row;
+    }
+  }
+  @media (max-width: 900px) {
+    & .content {
+      flex-direction: column;
+    }
   }
 
-  & .content {
-    flex-flow: row wrap;
-    width: 100%;
+  & p {
+    font-size: 20px;
+    margin: 0.5rem;
   }
 
   & h2 {
     font-family: Lato Bold;
     margin: 2em 0.4em 0.1em 0.4em;
     padding-bottom: 0.4em;
-  }
-
-  & h4 {
-    font-family: Lato Light;
-    font-weight: 400;
-    margin: 0.7em 2em;
-  }
-
-  & span {
-    color: ${props => props.style.colorText2};
   }
 `
 
@@ -72,30 +62,36 @@ const defaultStyle = {
   colorText2: '#DECCCC',
 }
 
-const renderImage = img => {
-  return img.map((e, i) => <img key={i + 'image-t'} alt="truc" src={e} />)
+const renderText = arrayText => {
+  return arrayText.map((e, i) => {
+    const spaceRemoved = e.charAt(0) === ' ' ? e.substr(1) : e
+    return <p key={i + 'content-text-list'}>{spaceRemoved}</p>
+  })
 }
 
-const renderSubContent = subContent =>
-  subContent.map((e, i) => (
-    <div className="content-icon" key={i + '-content-icon'}>
-      <h4>{e.text}</h4>
-      <div className="content-icon-image">{renderImage(e.images)}</div>
-    </div>
-  ))
+const renderColumn = arrayColumn =>
+  arrayColumn.map((e, i) => {
+    const strSplit = e.split(',')
+    return (
+      <div className="content-column" key={i + '-content-column'}>
+        {renderText(strSplit)}
+      </div>
+    )
+  })
 
-const SectionIcon = ({ content }) => {
+const SectionList = ({ content }) => {
+  console.log(content)
   return (
     <Block style={content.style ? content.style : defaultStyle}>
-      {content.title && <h2>{formateText(content.title)}</h2>}
+      <h2>{content.title && content.title}</h2>
       <UnderLine style={content.style ? content.style : defaultStyle} />
       <div className="content">
-        {content.content && content.content.length && renderSubContent(content.content)}
+        {content.columnText && content.columnText.length && renderColumn(content.columnText)}
       </div>
     </Block>
   )
 }
 
-export default SectionIcon
+export default SectionList
 
-SectionIcon.propTypes = {}
+SectionList.propTypes = {}

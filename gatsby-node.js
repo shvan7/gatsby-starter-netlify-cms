@@ -15,6 +15,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       sectionTitle : JSON
       sectionText : JSON
       sectionIcon: JSON
+      sectionList: JSON
     }
   `
   createTypes(typeDefs)
