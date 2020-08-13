@@ -15,8 +15,13 @@ const Block = styled.div`
   color: ${props => props.style.colorText1};
 
   & p {
+    display: inline;
     line-height: 1.5em;
     background-color: ${props => props.style.bgText};
+  }
+
+  & img {
+    margin: 2em 0;
   }
 
   & > div {
@@ -64,7 +69,6 @@ const defaultStyle = {
 const SectionText = ({ content }) => {
   const fromatedHtml = convertMarkdownToHtml(content.htmlMarkdown)
   const html = fromatedHtml.props.children
-  console.log(content.image)
 
   return (
     <Block style={content.style ? content.style : defaultStyle}>

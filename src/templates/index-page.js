@@ -64,6 +64,7 @@ export const pageQuery = graphql`
             name
             sectionTitle
             sectionText
+            sectionIcon
           }
         }
       }

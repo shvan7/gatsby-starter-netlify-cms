@@ -8,40 +8,53 @@ const Block = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  text-align: center;
   flex: 1;
   width: 100%;
+  min-height: 50vh;
   background-color: ${props => props.style.bgColor};
-  color: ${props => props.style.textColor1};
+  color: ${props => props.style.colorText1};
 
-  & > div {
+  & img {
+    max-height: 60px;
+    margin: 0 0.5em;
+  }
+
+  & div {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-  & > div > div:first-of-type {
-    min-height: 0.15em;
-    min-width: 20%;
-    background-color: ${props => props.style.textColor2};
+  /* & .content {
+    flex-direction: row;
+  } */
+
+  & .content-icon {
+    flex-direction: column;
+    margin: 20%;
   }
 
-  & > div > div:last-child {
-    display: flex;
-    flex: 1;
-    text-align: center;
-    margin-top: 3em;
+  & .content-icon-image {
+    flex-direction: row;
+  }
+
+  @media (min-width: 1024px) {
+    & .content {
+      flex-direction: row;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    & .content {
+      flex-direction: column;
+    }
   }
 
   & h2 {
-    overflow: visible;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    background-color: ${props => props.style.bgTitle};
     font-family: Lato Bold;
-    margin: 0.4em;
-    line-height: 0.4em;
+    margin: 2em 0.4em 0.1em 0.4em;
     padding-bottom: 0.4em;
   }
 
@@ -52,29 +65,43 @@ const Block = styled.div`
   }
 
   & span {
-    color: ${props => props.style.textColor2};
+    color: ${props => props.style.colorText2};
   }
 `
 
-// const UnderLine = styled.div`
-//   min-height: 0.2em;
-//   width: 20%;
-//   color: ${props => props.style.textColor2};
-// `
+const UnderLine = styled.p`
+  min-height: 0.2em;
+  border-radius: 2px;
+  margin: 0 2em 2em;
+  width: 20%;
+  background-color: ${props => props.style.colorText2};
+`
 
-// const BlockImg = array => {}
+const defaultStyle = {
+  bgColor: '#F7F7F7',
+  colorText1: '#121212',
+  colorText2: '#DECCCC',
+}
 
-const renderTitles = titles => titles.map(title => <h4>{title}</h4>)
+const renderImage = img => {
+  return img.map((e, i) => <img key={i + 'image-t'} alt="truc" src={e} />)
+}
 
-const renderSubContent = subContent => subContent.map(e => <div>{renderTitles(e.titles)}</div>)
+const renderSubContent = subContent =>
+  subContent.map((e, i) => (
+    <div className="content-icon" key={i + '-content-icon'}>
+      <h4>{e.text}</h4>
+      <div className="content-icon-image">{renderImage(e.images)}</div>
+    </div>
+  ))
 
 const SectionIcon = ({ content }) => {
   return (
-    <Block style={content.style}>
-      <div>
-        <h2>{content.title && formateText(content.title)}</h2>
-        <div></div>
-        <div>{content.subContent && renderSubContent(content.subContent)}</div>
+    <Block style={content.style ? content.style : defaultStyle}>
+      <h2>{content.title && formateText(content.title)}</h2>
+      <UnderLine style={content.style ? content.style : defaultStyle} />
+      <div className="content">
+        {content.content && content.content.length && renderSubContent(content.content)}
       </div>
     </Block>
   )

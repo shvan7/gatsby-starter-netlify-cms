@@ -29,9 +29,6 @@ export const Fonts = createGlobalStyle`
   body {
     font-family: Lato Regular;
   }
-  h2 {
-    font-size: 40px;
-  }
   h4 {
     font-size: 20px;
   }
@@ -47,27 +44,33 @@ export const Fonts = createGlobalStyle`
     opacity: 0.8;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 600px) {
     body {
       font-size: 25px;
     }
     h1 {
-     font-size: 50px;
+      font-size: 60px;
+    }
+    h2 {
+      font-size: 40px;
     }
     h3 {
-    font-size: 20px;
-  }
+      font-size: 30px;
+    }
   }
   
-  @media (max-width: 1024px) {
+  @media (max-width: 600px) {
     body {
-      font-size: 16px;
+      font-size: 20px;
     }
     h1 {
-     font-size: 40px;
+      font-size: 50px;
+    }
+    h2 {
+      font-size: 30px;
     }
     h3 {
-    font-size: 20px;
+      font-size: 25px;
     }
   }
 `

@@ -19,28 +19,26 @@ const Block = styled.div`
     text-align: center;
   }
 
+  & h1 {
+    overflow: visible;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    background-color: ${props => props.style.bgTitle};
+    font-family: Dancing Script Bold;
+    margin: 0.4em;
+    line-height: 0.4em;
+    padding-bottom: 0.2em;
+  }
+
   @media (min-width: 1024px) {
     & h1 {
-      overflow: visible;
-      text-overflow: ellipsis;
-      /* white-space: nowrap; */
-      background-color: ${props => props.style.bgTitle};
-      font-family: Dancing Script Bold;
-      margin: 0.4em;
       line-height: 0.4em;
-      padding-bottom: 0.2em;
     }
   }
+
   @media (max-width: 1024px) {
     & h1 {
-      overflow: visible;
-      text-overflow: ellipsis;
-      /* white-space: nowrap; */
-      background-color: ${props => props.style.bgTitle};
-      font-family: Dancing Script Bold;
-      margin: 0.4em;
       line-height: 1em;
-      padding-bottom: 0.2em;
     }
   }
 

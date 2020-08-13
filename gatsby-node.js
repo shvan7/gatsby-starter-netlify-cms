@@ -14,6 +14,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Frontmatter {
       sectionTitle : JSON
       sectionText : JSON
+      sectionIcon: JSON
     }
   `
   createTypes(typeDefs)
