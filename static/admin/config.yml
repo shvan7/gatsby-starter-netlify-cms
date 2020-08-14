@@ -34,8 +34,7 @@ collections:
                   {
                     label: 'Target',
                     name: 'target',
-                    widget: 'select',
-                    options: ['id1', 'id2', 'id3'],
+                    widget: 'string',
                   },
                 ],
             }

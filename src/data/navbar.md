@@ -3,7 +3,7 @@ templateKey: components
 type: nav-link
 link:
   - label: CONTACT
-    target: id1
+    target: "#4-Skill"
   - label: ABOUT ME
     target: id2
   - label: ALL

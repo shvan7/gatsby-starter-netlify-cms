@@ -16,7 +16,7 @@ const formatData = data => {
         result = [...result, ...res]
       }
 
-    return { result, position: section.position }
+    return { result, position: section.position, name: section.name }
   })
 }
 
@@ -27,7 +27,12 @@ export const IndexPageTemplate = ({ data }) => {
   const sectionsSorted = sections.map(section => section.result.sort((a, b) => a.index - b.index))
 
   return sectionsSorted.map((e, i) => (
-    <BlockChild key={'sections' + i} content={e} position={sections[i].position} />
+    <BlockChild
+      key={'sections' + i}
+      content={e}
+      position={sections[i].position}
+      id={sections[i].name}
+    />
   ))
 }
 

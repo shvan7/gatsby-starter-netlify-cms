@@ -38,14 +38,14 @@ const renderLinks = links =>
   ))
 
 const Navbar = ({ links }) => {
-  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
+  const [innerWidth, setInnerWidth] = useState(0)
 
   const updateWidth = () => setInnerWidth(window.innerWidth)
 
   useEffect(() => {
-    typeof window !== 'undefined' && window.addEventListener('resize', updateWidth, true)
-    return () =>
-      typeof window !== 'undefined' && window.removeEventListener('resize', updateWidth, true)
+    setInnerWidth(window.innerWidth)
+    window.addEventListener('resize', updateWidth, true)
+    return () => window.removeEventListener('resize', updateWidth, true)
   }, [])
 
   return (

@@ -68,14 +68,14 @@ const selectSection = content => {
   })
 }
 
-const BlockChild = ({ content, position }) => {
+const BlockChild = ({ content, position, id }) => {
   console.log('POSITION ========> ', position)
   return position === 'column' ? (
-    <BlockHorizontal>
+    <BlockHorizontal id={id}>
       <div>{selectSection(content)}</div>
     </BlockHorizontal>
   ) : (
-    <Block>
+    <Block id={id}>
       <div>{selectSection(content)}</div>
     </Block>
   )
