@@ -80,7 +80,6 @@ const renderColumn = arrayColumn =>
   })
 
 const SectionList = ({ content }) => {
-  console.log(content)
   return (
     <Block style={content.style ? content.style : defaultStyle}>
       <h2>{content.title && content.title}</h2>

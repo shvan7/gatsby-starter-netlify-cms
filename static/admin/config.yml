@@ -21,7 +21,7 @@ collections:
         label: Links
         name: links
         fields:
-          - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'index-page' }
+          - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'components' }
           - { label: 'Type', name: 'type', widget: 'hidden', default: 'nav-link' }
           - {
               label: 'Link',
@@ -38,6 +38,36 @@ collections:
                   },
                 ],
             }
+
+  - name: 'modalProject'
+    label: 'Modal Project'
+    folder: 'src/data/modalProject'
+    create: true
+    fields:
+      - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'components' }
+      - { label: 'Type', name: 'type', widget: 'hidden', default: 'modalProject' }
+      - { label: 'Categorie', name: 'categorie', widget: 'string' }
+      - {
+          label: 'Elements',
+          name: 'elements',
+          collapsed: false,
+          widget: 'list',
+          fields:
+            [
+              { label: 'Name', name: 'name', widget: 'string' },
+              {
+                label: 'Link',
+                name: 'link',
+                widget: 'string',
+              },
+              { 
+                label: Image,
+                name: image,
+                widget: image,
+                required: false,
+              },
+            ],
+        }
 
   - name: 'section-index-page'
     label: 'Section Index Page'
@@ -89,7 +119,6 @@ collections:
                 name: image,
                 widget: image,
                 required: false,
-                allow_multiple: false,
               },
               { label: Index, name: index, widget: number },
               { label: Text, name: htmlMarkdown, widget: markdown, required: false },
@@ -163,5 +192,106 @@ collections:
               widget: list,
               field: { label: List, name: list, widget: string },
             }
+          ]
+        }
+      - {
+        label: Section Carousel,
+        name: sectionCarousel,
+        collapsed: true,
+        widget: 'list',
+        fields:
+          [
+            { label: Title, name: title, widget: string, required: false },
+            { 
+              label: Categories,
+              name: categories,
+              widget: list,
+              fields: [
+                { label: Text, name: text, widget: string, required: false },
+                {
+                  label: Image,
+                  name: image,
+                  widget: image,
+                },
+              ],
+            },
+            {
+              label: 'Style',
+              name: 'style',
+              widget: 'object',
+              fields:
+                [
+                  { label: 'Background color', name: 'bgColor', widget: 'color', required: false },
+                  { label: 'Background color title', name: 'bgTitle', widget: 'color', required: false },
+                  { label: 'Color 1', name: 'colorText1', widget: 'color', required: false },
+                ],
+            },
+          ],
+        }
+      - {
+        label: Section Contact,
+        name: sectionContact,
+        collapsed: true,
+        widget: 'list',
+        fields:
+          [
+            { label: Title, name: title, widget: string, required: false },
+            { label: Label Button, name: labelButton, widget: string },
+            { 
+              label: Fields,
+              name: fields,
+              widget: list,
+              fields: [
+                { label: Label, name: label, widget: string },
+                {
+                  label: Type,
+                  name: type,
+                  widget: select,
+                  options: ['text', 'mail', 'alphabet']
+                },
+              ],
+            },
+            {
+              label: 'Style',
+              name: 'style',
+              widget: 'object',
+              fields:
+                [
+                  { label: 'Background color', name: 'bgColor', widget: 'color', required: false },
+                  { label: 'Background color title', name: 'bgTitle', widget: 'color', required: false },
+                  { label: 'Color 1', name: 'colorText1', widget: 'color', required: false },
+                  { label: 'Button Color', name: 'btnColor', widget: 'color', required: false },
+                ],
+            },
+          ],
+        }
+      - {
+        label: Section Social,
+        name: sectionSocial,
+        collapsed: true,
+        widget: 'list',
+        fields:
+          [
+            { 
+              label: Socials,
+              name: socials,
+              widget: list,
+              fields: 
+              [
+                { label: Link, name: link, widget: string },
+                { label: SVG, name: svg, widget: image },
+              ],
+            },
+            {
+              label: 'Style',
+              name: 'style',
+              widget: 'object',
+              fields:
+                [
+                  { label: 'Background color', name: 'bgColor', widget: 'color', required: false },
+                  { label: 'Color image', name: 'imgColor', widget: 'color', required: false },
+                  { label: 'Color hover image', name: 'imgHoverColor', widget: 'color', required: false },
+                ],
+            },
           ]
         }

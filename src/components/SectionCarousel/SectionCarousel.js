@@ -3,10 +3,8 @@ import styled from 'styled-components'
 // import PropTypes from 'prop-types'
 
 import Carousel from 'react-multi-carousel'
+import { ModalContext } from '../../containers/Layout/Layout'
 import 'react-multi-carousel/lib/styles.css'
-
-import { formateText } from '../../utils/lib'
-import FakeImg from '../../ressources/img/fake.png'
 
 const Block = styled.div`
   display: flex;
@@ -14,9 +12,10 @@ const Block = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
+  height: 100vh;
   width: 100%;
   background-color: ${props => props.style.bgColor};
-  color: ${props => props.style.textColor1};
+  color: ${props => props.style.colorText1};
 
   & > div:first-child {
     position: relative;
@@ -45,10 +44,37 @@ const Block = styled.div`
     padding-bottom: 0.3em;
   }
 
+  & .diapo-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 95%;
+      width: 85%;
+      color: transparent;
+      margin: 0;
+      position: absolute;
+      transition: all 5s ease 0;
+    }
+
+    & > div:hover {
+      cursor: pointer;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: all 1s linear;
+    }
+  }
+
   & .react-multi-carousel-list {
     width: 85vw;
     height: 50%;
     text-align: center;
+    margin-bottom: 50px;
   }
 
   & .react-multi-carousel-list img {
@@ -103,45 +129,48 @@ const responsive = {
   },
 }
 
+const defaultStyle = {
+  bgColor: '#F7F7F7',
+  bgTitle: 'red',
+  colorText1: '#121212',
+}
+
+const renderDiapo = (diapos, displayModal) => {
+  return diapos.map((e, i) => {
+    return (
+      <div
+        onClick={() => displayModal(e.text)}
+        key={i + 'diapo-carousel'}
+        className="diapo-carousel"
+      >
+        <div>
+          <p>{e.text}</p>
+        </div>
+        <img alt="fake_img" src={e.image} />
+      </div>
+    )
+  })
+}
+
 const SectionCarousel = ({ content }) => {
+  const displayModal = React.useContext(ModalContext)
+
   return (
-    <Block style={content.style}>
+    <Block style={content.style ? content.style : defaultStyle}>
       <div>
+        {content.title && <h1>{content.title}</h1>}
         <div></div>
-        <h1>{content.title && formateText(content.title)}</h1>
       </div>
       <Carousel
         swipeable={true}
-        // draggable={false}
         showDots={true}
         responsive={responsive}
-        // ssr={true} // means to render carousel on server-side.
         infinite={true}
         autoPlay={true}
-        autoPlaySpeed={3000}
-        // keyBoardControl={true}
-        // customTransition="all .5"
-        // transitionDuration={3000}
-        // containerClass="carousel-container"
+        autoPlaySpeed={4000}
         removeArrowOnDeviceType={['tablet', 'mobile']}
-        // deviceType={content.deviceType}
-        // dotListClass="custom-dot-list-style"
       >
-        <div>
-          <img alt="fake_img" src={FakeImg} />
-        </div>
-        <div>
-          <img alt="fake_img" src={FakeImg} />
-        </div>
-        <div>
-          <img alt="fake_img" src={FakeImg} />
-        </div>
-        <div>
-          <img alt="fake_img" src={FakeImg} />
-        </div>
-        <div>
-          <img alt="fake_img" src={FakeImg} />
-        </div>
+        {renderDiapo(content.categories, displayModal)}
       </Carousel>
     </Block>
   )

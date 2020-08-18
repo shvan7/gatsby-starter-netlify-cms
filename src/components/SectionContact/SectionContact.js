@@ -10,8 +10,8 @@ const Block = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1;
   width: 100%;
+  height: 100vh;
   background-color: ${props => props.style.bgColor};
   color: ${props => props.style.textColor1};
 
@@ -43,14 +43,22 @@ const Block = styled.div`
   }
 `
 
+const defaultStyle = {
+  bgColor: '#F7F7F7',
+  colorText1: '#121212',
+  colorText2: '#DECCCC',
+  bgTitle: '#DECCCC',
+}
+
 const SectionContact = ({ content }) => {
+  const style = content.style ? content.style : defaultStyle
   return (
-    <Block style={content.style}>
+    <Block style={style}>
       <div>
         <div></div>
-        <h1>{content.title && formateText(content.title)}</h1>
+        {content.title && <h1>{formateText(content.title)}</h1>}
       </div>
-      {FormGenerator(content)}
+      <FormGenerator content={{ ...content, style }} />
     </Block>
   )
 }

@@ -5,10 +5,16 @@ import Input from './Input'
 
 const Form = styled.form`
   display: flex;
+  align-items: center;
   width: 60%;
   flex-wrap: wrap;
   font-family: Lato Light;
   padding: 1em;
+
+  & input,
+  & textarea {
+    min-width: 250px;
+  }
 
   & .textarea-div {
     margin-top: 1em;
@@ -58,27 +64,33 @@ const Textarea = field => (
 )
 
 const renderFields = fields =>
-  fields.map(field => {
+  fields.map((field, i) => {
     switch (field.type) {
-      case 'alpha':
-        return <Input {...field} />
+      case 'alphabet':
+        return <Input key={i + '-field-' + field.label} {...field} />
       case 'mail':
-        return <Input {...field} />
+        return <Input key={i + '-field-' + field.label} {...field} />
       case 'text':
-        return <Textarea {...field} />
+        return <Textarea key={i + '-field-' + field.label} {...field} />
       default:
         return <p>Error Type Input</p>
     }
   })
 
-const FormGenerator = props => {
+const FormGenerator = ({ content }) => {
   const prevent = event => event.preventDefault()
   return (
-    <Form style={props.style} action={props.form.action}>
-      {renderFields(props.form.fields)}
+    <Form
+      style={content.style}
+      name={content.title}
+      method="post"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+    >
+      {renderFields(content.fields)}
       <div className="button-div">
         <button type="submit" onClick={prevent}>
-          {props.form.submitText}
+          {content.labelButton}
         </button>
       </div>
     </Form>

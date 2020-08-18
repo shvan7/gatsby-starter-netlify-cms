@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 // CSS --------------------------------------------------------------
@@ -68,7 +68,8 @@ const SvgChecked = () => {
 
 // Component --------------------------------------------------------
 const Input = props => {
-  const { name, label, value, onChange, options = {} } = props
+  const [value, setValue] = useState('')
+  const { name, label, options = {} } = props
   const { min, max, valid, msgError } = options
 
   const labelLowerCase = name && name.toLowerCase() + '-str-input'
@@ -82,7 +83,13 @@ const Input = props => {
   return (
     <Div>
       {valid && isValidLength(value) && <SvgChecked />}
-      <InputStyled type="text" name={name} id={labelLowerCase} value={value} onChange={onChange} />
+      <InputStyled
+        type="text"
+        name={name}
+        id={labelLowerCase}
+        value={value}
+        onChange={e => setValue(e.target.value)}
+      />
       {!valid && <p>{msgError}</p>}
       <label htmlFor={labelLowerCase}>{label}</label>
     </Div>

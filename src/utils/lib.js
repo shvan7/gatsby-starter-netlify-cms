@@ -2,6 +2,8 @@ import React from 'react'
 import remark from 'remark'
 import remarkHTML from 'remark-html'
 
+var path = require('path')
+
 const renderFormated = (result, type) => {
   const newArray = []
   let str = ''
@@ -31,3 +33,5 @@ export const convertMarkdownToHtml = markdown => {
   const html = remark().use(remarkHTML).processSync(markdown).toString()
   return formateText(html, 'html')
 }
+
+export const getBaseName = (str, ext) => path.basename(str, ext)

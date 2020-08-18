@@ -9,6 +9,7 @@ import SectionList from '../../components/SectionList'
 import SectionCarousel from '../../components/SectionCarousel'
 import SectionContact from '../../components/SectionContact'
 import SectionMe from '../../components/SectionMe'
+import SectionSocial from '../../components/SectionSocial'
 
 const Block = styled.div`
   display: flex;
@@ -62,6 +63,8 @@ const selectSection = content => {
         return <SectionContact key={i + element.type} content={element} />
       case 'sectionMe':
         return <SectionMe key={i + element.type} content={element} />
+      case 'sectionSocial':
+        return <SectionSocial key={i + element.type} content={element} />
       default:
         return <p>None</p>
     }
@@ -69,7 +72,6 @@ const selectSection = content => {
 }
 
 const BlockChild = ({ content, position, id }) => {
-  console.log('POSITION ========> ', position)
   return position === 'column' ? (
     <BlockHorizontal id={id}>
       <div>{selectSection(content)}</div>

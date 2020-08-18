@@ -74,6 +74,9 @@ export const pageQuery = graphql`
             sectionText
             sectionIcon
             sectionList
+            sectionCarousel
+            sectionContact
+            sectionSocial
           }
         }
       }
