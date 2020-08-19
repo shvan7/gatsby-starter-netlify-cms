@@ -5,13 +5,6 @@ import styled from 'styled-components'
 import { formateText } from '../../utils/lib'
 
 const Block = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  flex: 1;
-  width: 100%;
-  min-height: 100vh;
   background-color: ${props => props.style.bgColor};
   color: ${props => props.style.colorText1};
 

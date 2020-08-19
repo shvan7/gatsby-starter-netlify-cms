@@ -5,20 +5,12 @@ import styled from 'styled-components'
 import { formateText } from '../../utils/lib'
 
 const Block = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  flex: 1;
-  width: 100%;
-  min-height: 50vh;
   background-color: ${props => props.style.bgColor};
   color: ${props => props.style.colorText1};
 
   & img {
     max-height: 60px;
-    margin: 0 0.5em;
+    margin: 1em 0.5em;
   }
 
   & div {

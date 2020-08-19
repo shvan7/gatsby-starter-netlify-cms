@@ -5,14 +5,6 @@ import styled from 'styled-components'
 import { getBaseName } from '../../utils/lib'
 
 const Block = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  flex: 1;
-  width: 100%;
-  min-height: 50vh;
   background-color: ${props => props.style.bgColor};
   color: ${props => props.style.colorText1};
 
@@ -80,6 +72,9 @@ const asyncRender = (e, i) => {
   return fetch(e.svg)
     .then(e => e.text())
     .then(svg => {
+      const regex = /<svg?.+<\/svg>/gms
+      const svgOk = svg.match(regex)[0]
+
       return (
         <div className="content-icon" key={i + '-content-icon'}>
           <div className="content-icon-image">
@@ -88,7 +83,7 @@ const asyncRender = (e, i) => {
                 key={i + 'image-social'}
                 href={e.link}
                 target="_blank"
-                dangerouslySetInnerHTML={{ __html: svg }}
+                dangerouslySetInnerHTML={{ __html: svgOk }}
               />
             </div>
           </div>

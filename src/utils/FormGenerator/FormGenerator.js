@@ -6,10 +6,12 @@ import Input from './Input'
 const Form = styled.form`
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 60%;
   flex-wrap: wrap;
   font-family: Lato Light;
   padding: 1em;
+  text-align: left;
 
   & input,
   & textarea {
@@ -31,6 +33,8 @@ const Form = styled.form`
     width: 100%;
     height: 15vh;
     margin-top: 7px;
+    display: flex;
+    justify-content: center;
 
     & > textarea {
       width: 100%;

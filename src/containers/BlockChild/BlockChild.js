@@ -13,20 +13,34 @@ import SectionSocial from '../../components/SectionSocial'
 
 const Block = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
 
   & > div {
-    flex: 1;
-    flex-flow: column;
-    background-color: silver;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
+    min-width: 100%;
+    min-height: 100vh;
+    flex-direction: row;
 
     @media (min-width: 1024px) {
       flex-direction: row;
     }
     @media (max-width: 1024px) {
+      flex-direction: column;
+    }
+
+    & > div {
+      /* flex: 1; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      min-height: inherit;
+      width: 100%;
       flex-direction: column;
     }
   }
@@ -37,12 +51,25 @@ const BlockHorizontal = styled.div`
   flex-wrap: wrap;
 
   & > div {
-    flex: 1;
-    flex-flow: column;
-    background-color: silver;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
+    min-width: 100%;
+    min-height: 50vh;
+    flex-direction: column;
+
+    & > div {
+      /* flex: 1; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      min-height: inherit;
+      width: 100%;
+      flex-direction: column;
+    }
   }
 `
 

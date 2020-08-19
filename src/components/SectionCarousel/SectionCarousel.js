@@ -7,13 +7,6 @@ import { ModalContext } from '../../containers/Layout/Layout'
 import 'react-multi-carousel/lib/styles.css'
 
 const Block = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  height: 100vh;
-  width: 100%;
   background-color: ${props => props.style.bgColor};
   color: ${props => props.style.colorText1};
 

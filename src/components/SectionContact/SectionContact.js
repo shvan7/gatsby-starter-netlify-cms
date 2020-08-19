@@ -6,18 +6,13 @@ import { formateText } from '../../utils/lib'
 import FormGenerator from '../../utils/FormGenerator'
 
 const Block = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
   background-color: ${props => props.style.bgColor};
   color: ${props => props.style.textColor1};
 
   & > div:first-child {
     position: relative;
     display: flex;
+    justify-content: center;
     align-items: center;
 
     & > div {

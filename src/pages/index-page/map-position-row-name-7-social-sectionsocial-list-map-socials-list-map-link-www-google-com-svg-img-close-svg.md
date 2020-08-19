@@ -10,7 +10,7 @@ sectionTitle:
 sectionSocial:
   - socials:
       - link: www.google.com
-        svg: /img/facebook.svg
+        svg: /img/twitter.svg
       - link: www.google.com
         svg: /img/instagram.svg
       - link: www.google.com
