@@ -8,7 +8,6 @@ sectionIcon:
         images:
           - /img/adobe.svg
           - /img/illustrator.svg
-          - /img/Image5.png
       - text: Vidéo
         images:
           - /img/adobe.svg
