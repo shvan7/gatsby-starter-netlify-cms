@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 // import PropTypes from 'prop-types'
 
@@ -57,44 +57,58 @@ const Block = styled.div`
     color: ${props => props.style.colorText2};
   }
 
-  & .content-icon-image * {
-    fill: #fff !important;
+  & svg {
+    height: 100px;
+  }
+
+  & .content-icon-image svg * {
+    fill: ${props => props.style.imgColor};
+  }
+
+  & .content-icon-image a:hover * {
+    fill: ${props => props.style.imgHoverColor};
   }
 `
 
 const defaultStyle = {
   bgColor: '#F7F7F7',
-  colorText1: '#121212',
-  colorText2: '#DECCCC',
+  imgColor: '#fff',
+  imgHoverColor: '#DECCCC',
 }
 
-const renderSubContent = subContent =>
-  subContent.map((e, i) => (
-    <div className="content-icon" key={i + '-content-icon'}>
-      <div className="content-icon-image">
-        <a key={i + 'image-social'} href={e.link} target="_blank">
-          <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
-            <rect width="100%" height="100%" fill="green" />
-            <image
-              style={{ backgroundColor: 'red', color: 'white' }}
-              fill="white"
-              xlinkHref={e.svg}
-              src={getBaseName(e.svg, '.svg') + '.png'}
-              width="100"
-              height="100"
-            />
-          </svg>
-        </a>
-      </div>
-    </div>
-  ))
+const asyncRender = (e, i) => {
+  return fetch(e.svg)
+    .then(e => e.text())
+    .then(svg => {
+      return (
+        <div className="content-icon" key={i + '-content-icon'}>
+          <div className="content-icon-image">
+            <div>
+              <a
+                key={i + 'image-social'}
+                href={e.link}
+                target="_blank"
+                dangerouslySetInnerHTML={{ __html: svg }}
+              />
+            </div>
+          </div>
+        </div>
+      )
+    })
+}
+
+const renderSubContent = async subContent => Promise.all(subContent.map(asyncRender))
 
 const SectionSocial = ({ content }) => {
+  const [dataSvg, setDataSvg] = useState([])
+
+  useEffect(() => {
+    renderSubContent(content.socials).then(setDataSvg)
+  }, [content])
+
   return (
     <Block style={content.style ? content.style : defaultStyle}>
-      <div className="content">
-        {content.socials && content.socials.length && renderSubContent(content.socials)}
-      </div>
+      <div className="content">{dataSvg}</div>
     </Block>
   )
 }
