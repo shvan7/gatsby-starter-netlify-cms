@@ -46,7 +46,7 @@ const Block = styled.div`
   }
 `
 
-const BlockHorizontal = styled.div`
+const BlockColumn = styled.div`
   display: flex;
   flex-wrap: wrap;
 
@@ -56,7 +56,7 @@ const BlockHorizontal = styled.div`
     justify-content: center;
 
     min-width: 100%;
-    min-height: 50vh;
+    min-height: ${props => 100 / props.nbChild + 'vh'};
     flex-direction: column;
 
     & > div {
@@ -100,9 +100,9 @@ const selectSection = content => {
 
 const BlockChild = ({ content, position, id }) => {
   return position === 'column' ? (
-    <BlockHorizontal id={id}>
+    <BlockColumn id={id} nbChild={content.length}>
       <div>{selectSection(content)}</div>
-    </BlockHorizontal>
+    </BlockColumn>
   ) : (
     <Block id={id}>
       <div>{selectSection(content)}</div>

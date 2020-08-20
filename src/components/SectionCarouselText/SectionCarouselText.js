@@ -67,7 +67,7 @@ const defaultStyle = {
   colorText2: '#DECCCC',
 }
 
-const SectionText = ({ content }) => {
+const SectionCarouselText = ({ content }) => {
   const fromatedHtml = convertMarkdownToHtml(content.htmlMarkdown)
   const html = fromatedHtml.props.children
 
@@ -86,8 +86,8 @@ const SectionText = ({ content }) => {
   )
 }
 
-export default SectionText
+export default SectionCarouselText
 
-SectionText.defaultProps = {}
+SectionCarouselText.defaultProps = {}
 
-SectionText.propTypes = {}
+SectionCarouselText.propTypes = {}

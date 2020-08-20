@@ -37,6 +37,22 @@ export const IndexPageTemplate = ({ data }) => {
 }
 
 const IndexPage = ({ data }) => {
+  if (!data)
+    return (
+      <Layout>
+        <div
+          style={{
+            height: '100vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <h2>No data ...</h2>
+        </div>
+      </Layout>
+    )
+
   const { edges } = data.allMarkdownRemark
   const arrayContent = edges.map(e => e.node.frontmatter)
   const flatArray = arrayContent.flat()
@@ -59,9 +75,12 @@ IndexPage.propTypes = {
 export default IndexPage
 
 export const pageQuery = graphql`
-  query IndexPageTemplate {
+  query IndexPageTemplate($templateKey: String!) {
     allMarkdownRemark(
-      filter: { frontmatter: { templateKey: { eq: null } } }
+      filter: {
+        frontmatter: { templateKey: { eq: null } }
+        fileAbsolutePath: { regex: $templateKey }
+      }
       sort: { fields: frontmatter___name }
     ) {
       edges {

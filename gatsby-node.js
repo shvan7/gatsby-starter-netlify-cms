@@ -57,12 +57,14 @@ exports.createPages = ({ actions, graphql }) => {
       if (customPath === '/index-page/') customPath = '/'
       if (edge.node.frontmatter.templateKey !== 'components') {
         const id = edge.node.id
+        const regex = '/' + edge.node.frontmatter.templateKey + '/'
         createPage({
           path: customPath,
-          component: path.resolve(`src/templates/${String(edge.node.frontmatter.templateKey)}.js`),
+          component: path.resolve(`src/templates/index-page.js`),
           // additional data can be passed via context
           context: {
             id,
+            templateKey: regex,
           },
         })
       }

@@ -15,5 +15,6 @@ CMS.registerMediaLibrary(uploadcare)
 CMS.registerMediaLibrary(cloudinary)
 
 CMS.registerPreviewTemplate('section-index-page', withStyledComponents(SectionIndexPagePreview))
+CMS.registerPreviewTemplate('section-rapport', withStyledComponents(SectionIndexPagePreview))
 CMS.registerPreviewTemplate('navbar', withStyledComponents(NavbarPreview))
 CMS.registerPreviewTemplate('modalProject', withStyledComponents(ModalProjectPreview))

@@ -10,6 +10,10 @@ const Block = styled.div`
 
   & div {
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
   & h1 {
@@ -19,13 +23,14 @@ const Block = styled.div`
     background-color: ${props => props.style.bgTitle};
     font-family: Dancing Script Bold;
     margin: 0.4em;
-    line-height: 0.4em;
     padding-bottom: 0.2em;
   }
 
   @media (min-width: 1024px) {
     & h1 {
-      line-height: 0.4em;
+      max-width: 800px;
+      font-size: 60px;
+      line-height: 1em;
     }
   }
 
